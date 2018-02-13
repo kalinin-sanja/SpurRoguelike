@@ -36,7 +36,7 @@ namespace SpurRoguelike
             commandLineParser
                 .Setup(options => options.LevelCount)
                 .As('n')
-                .SetDefault(5)
+                .SetDefault(6)    
                 .WithDescription("Number of levels to generate");
 
             commandLineParser
@@ -90,6 +90,9 @@ namespace SpurRoguelike
             var levels = new List<Level>();
 
             var settings = FillDefaultSettings();
+
+            var increaseX = settings.Field.MaxWidth / 3;
+            var increaseY = settings.Field.MaxHeight / 3;
             
             for (int i = 0; i < count - 1; i++)
             {
@@ -100,6 +103,14 @@ namespace SpurRoguelike
 
                 settings.Monsters.MinSkill += 0.1;
                 settings.Monsters.MaxSkill += 0.1;
+
+                settings.Field.MaxWidth += increaseX;
+                settings.Field.MinWidth += increaseX;
+                
+                settings.Field.MaxHeight += increaseY;
+                settings.Field.MinHeight += increaseY;
+
+                settings.Field.FreeSpaceShare -= 0.05;
 
                 if (i == 1)
                     settings.Items.MaxLevel = 100;
