@@ -18,6 +18,10 @@ namespace SpurRoguelike.Generators
             public int MaxWidth { get; set; }
             public int MinHeight { get; set; }
             public int MaxHeight { get; set; }
+            public int MinVisibilityWidth { get; set; }
+            public int MaxVisibilityWidth { get; set; }
+            public int MinVisibilityHeight { get; set; }
+            public int MaxVisibilityHeight { get; set; }
             public double FreeSpaceShare { get; set; }
         }
 

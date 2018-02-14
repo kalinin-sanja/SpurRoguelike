@@ -6,6 +6,7 @@
         Trap = 1,
         PlayerStart = 2,
         Exit = 3,
-        Empty = 4
+        Empty = 4,
+        Hidden = 5
     }
 }

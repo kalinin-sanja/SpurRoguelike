@@ -53,9 +53,9 @@ namespace SpurRoguelike.ConsoleGUI.Panels
             if (level != entity.Level)
                 return false;
 
-            var offset = entity.Location - level.Player.Location;
+            var offset = (entity.Location - level.Player.Location).Abs();
 
-            return Math.Abs(offset.XOffset) <= ClientZone.Width / 2 && Math.Abs(offset.YOffset) <= ClientZone.Height / 2;
+            return offset.XOffset <= ClientZone.Width / 2 && offset.YOffset <= ClientZone.Height / 2;
         }
 
         private int LevelLeftOffset => ClientZone.Left + ClientZone.Width / 2 - levelProvider()?.Player?.Location.X ?? 0;
@@ -63,7 +63,15 @@ namespace SpurRoguelike.ConsoleGUI.Panels
         private int LevelTopOffset => ClientZone.Top + ClientZone.Height / 2 - levelProvider()?.Player?.Location.Y ?? 0;
 
         private static ConsoleCharacter GetLocationRepresentation(Location location, Level level)
-        {
+        {            
+            if (level.Player != null)
+            {
+                var offset = (level.Player.Location - location).Abs();
+                if (offset.XOffset > level.Field.VisibilityWidth ||
+                    offset.YOffset > level.Field.VisibilityHeight)
+                    return new ConsoleCharacter('*', ConsoleColor.DarkGray);
+            }
+
             if (level.GetEntity<Monster>(location) != null)
                 return new ConsoleCharacter('@', ConsoleColor.Red);
 

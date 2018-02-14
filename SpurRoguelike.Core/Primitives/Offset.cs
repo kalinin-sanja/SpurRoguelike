@@ -77,6 +77,11 @@ namespace SpurRoguelike.Core.Primitives
             return Math.Abs(XOffset) + Math.Abs(YOffset);
         }
 
+        public Offset Abs()
+        {
+            return new Offset(Math.Abs(XOffset), Math.Abs(YOffset));
+        }
+
         public static Offset FromDirection(StepDirection stepDirection)
         {
             return StepOffsets[(int)stepDirection];

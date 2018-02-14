@@ -13,7 +13,7 @@ namespace SpurRoguelike.Core.Views
             this.level = level;
         }
 
-        public FieldView Field => level?.Field?.CreateView() ?? default(FieldView);
+        public FieldView Field => level?.Field?.CreateView(level?.Player?.Location) ?? default(FieldView);
 
         public PawnView Player => level?.Player?.CreateView() ?? default(PawnView);
 

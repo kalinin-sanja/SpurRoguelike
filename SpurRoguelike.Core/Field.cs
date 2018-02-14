@@ -6,14 +6,19 @@ namespace SpurRoguelike.Core
 {
     public class Field
     {
-        public Field(int width, int height)
+        public int VisibilityWidth { get; private set; }
+        public int VisibilityHeight { get; private set; }
+
+        public Field(int width, int height, int visibilityWidth, int visibilityHeight)
         {
+            VisibilityWidth = visibilityWidth;
+            VisibilityHeight = visibilityHeight;
             cells = new CellType[width, height];
         }
 
-        public FieldView CreateView()
+        public FieldView CreateView(Location? center)
         {
-            return new FieldView(this);
+            return new FieldView(this, center);
         }
 
         public CellType this[Location index]
@@ -45,7 +50,7 @@ namespace SpurRoguelike.Core
         public int Height => cells.GetLength(1);
 
         public Location PlayerStart { get; private set; }
-
+        
         private readonly CellType[,] cells;
     }
 }

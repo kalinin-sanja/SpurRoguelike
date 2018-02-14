@@ -20,7 +20,9 @@ namespace SpurRoguelike.Generators
         {
             var field = new Field(
                 Random.Next(settings.Field.MinWidth, settings.Field.MaxWidth),
-                Random.Next(settings.Field.MinHeight, settings.Field.MaxHeight));
+                Random.Next(settings.Field.MinHeight, settings.Field.MaxHeight),
+                Random.Next(settings.Field.MinVisibilityWidth, settings.Field.MaxVisibilityWidth),
+                Random.Next(settings.Field.MinVisibilityHeight, settings.Field.MaxVisibilityHeight));
 
             SetPlayerStart(field);
 

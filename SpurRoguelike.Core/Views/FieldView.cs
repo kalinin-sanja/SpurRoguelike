@@ -5,12 +5,28 @@ namespace SpurRoguelike.Core.Views
 {
     public struct FieldView : IView
     {
-        public FieldView(Field field)
+        public FieldView(Field field, Location? center)
         {
             this.field = field;
+            this.center = center;
         }
 
-        public CellType this[Location index] => field?[index] ?? CellType.Empty;
+        public CellType this[Location index]
+        {
+            get
+            {
+                if (field == null)
+                    return CellType.Empty;
+                if (!center.HasValue)
+                    return field[index];
+                var centerValue = center.Value;
+                var offset = (index - centerValue).Abs();
+                if (offset.XOffset > field.VisibilityWidth || offset.YOffset > field.VisibilityHeight)
+                    return CellType.Hidden;
+                
+                return field[index];
+            }
+        }
 
         public int Width => field?.Width ?? 0;
 
@@ -28,5 +44,6 @@ namespace SpurRoguelike.Core.Views
         public bool HasValue => field != null;
 
         private readonly Field field;
+        private Location? center;
     }
 }
