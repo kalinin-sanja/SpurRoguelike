@@ -16,7 +16,8 @@ namespace SpurRoguelike.Generators
             Random = new Random(seed);
         }
 
-        public virtual Level Generate(LevelGenerationSettings settings, IList<MonsterClass> monsterClasses, IList<ItemClass> itemClasses)
+        public virtual Level Generate(LevelGenerationSettings settings, IList<MonsterClass> monsterClasses,
+            IList<ItemClass> itemClasses, int levelNumber)
         {
             var field = new Field(
                 Random.Next(settings.Field.MinWidth, settings.Field.MaxWidth),
@@ -30,7 +31,7 @@ namespace SpurRoguelike.Generators
 
             SetupTraps(field, settings);
 
-            var level = new Level(field, Seed);
+            var level = new Level(field, Seed, levelNumber);
 
             PopulateWithMonsters(level, settings, monsterClasses.Where(c => c.Skill >= settings.Monsters.MinSkill && c.Skill <= settings.Monsters.MaxSkill).ToList());
 

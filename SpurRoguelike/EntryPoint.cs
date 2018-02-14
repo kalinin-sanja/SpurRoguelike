@@ -67,7 +67,7 @@ namespace SpurRoguelike
 
         private static List<Level> GenerateLevels(int seed, int count)
         {
-            count = Math.Min(5, Math.Max(2, count));
+            count = Math.Min(6, Math.Max(2, count));
 
             var nameGenerator = new NameGenerator(seed);
             var levelGenerator = new LevelGenerator(seed, nameGenerator);
@@ -96,7 +96,7 @@ namespace SpurRoguelike
             
             for (int i = 0; i < count - 1; i++)
             {
-                levels.Add(levelGenerator.Generate(settings, monsterClasses, itemClasses));
+                levels.Add(levelGenerator.Generate(settings, monsterClasses, itemClasses, i + 1));
 
                 if (i > 0)
                     levels[i - 1].SetNextLevel(levels[i]);
@@ -118,9 +118,9 @@ namespace SpurRoguelike
 
             var lastLevelSettigns = FillLastLevelSettings();
             var lastLevelMonsterClasses = monsterClassesGenerator.Generate(1, 
-                new MonsterClassOptions { Skill = 1.2, Rarity = 1, Factory = (name, skill, health, attack, defence) => new ArenaFighter(name, attack, defence, health, health, skill) });
+                new MonsterClassOptions { Skill = 1.5, Rarity = 1, Factory = (name, skill, health, attack, defence) => new ArenaFighter(name, attack, defence, health, health, skill) });
 
-            var lastLevel = new ArenaGenerator(seed, nameGenerator).Generate(lastLevelSettigns, lastLevelMonsterClasses, itemClasses);
+            var lastLevel = new ArenaGenerator(seed, nameGenerator).Generate(lastLevelSettigns, lastLevelMonsterClasses, itemClasses, levels.Count + 1);
 
             levels[levels.Count - 1].SetNextLevel(lastLevel);
 

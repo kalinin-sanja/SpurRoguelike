@@ -25,6 +25,8 @@ namespace SpurRoguelike.ConsoleGUI.Panels
                 return;
 
             var lineIndex = 0;
+            
+            DrawStatLine(ref lineIndex, "Level: " + player.Level.Number);
             DrawStatLine(ref lineIndex, "Name: " + player.Name);
             DrawStatLine(ref lineIndex, "Health: " + player.Health);
             DrawStatLine(ref lineIndex, "Attack: " + player.Attack + (player.EquippedItem == null ? "" : " + " + player.EquippedItem.AttackBonus));

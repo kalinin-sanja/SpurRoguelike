@@ -34,9 +34,10 @@ namespace SpurRoguelike.Generators
             level.Spawn(farthestFromPlayer, monsterClasses.Single().Factory());
         }
 
-        public override Level Generate(LevelGenerationSettings settings, IList<MonsterClass> monsterClasses, IList<ItemClass> itemClasses)
+        public override Level Generate(LevelGenerationSettings settings, IList<MonsterClass> monsterClasses,
+            IList<ItemClass> itemClasses, int levelNumber)
         {
-            var level = base.Generate(settings, monsterClasses, itemClasses);
+            var level = base.Generate(settings, monsterClasses, itemClasses, levelNumber);
 
             level.Spawn(new Location(), new OpenExitTrigger("OpenExit", int.MaxValue));
 

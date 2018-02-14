@@ -9,9 +9,10 @@ namespace SpurRoguelike.Core
 {
     public class Level
     {
-        public Level(Field field, int seed)
+        public Level(Field field, int seed, int number)
         {
             Field = field;
+            Number = number;
             Entities = new List<Entity>();
             Random = new Random(seed);
 
@@ -98,6 +99,7 @@ namespace SpurRoguelike.Core
         }
 
         public Field Field { get; }
+        public int Number { get; }
 
         public Player Player { get; private set; }
 
