@@ -69,7 +69,7 @@ namespace SpurRoguelike.ConsoleGUI.Panels
                 var offset = (level.Player.Location - location).Abs();
                 if (offset.XOffset > level.Field.VisibilityWidth ||
                     offset.YOffset > level.Field.VisibilityHeight)
-                    return new ConsoleCharacter('*', ConsoleColor.DarkGray);
+                    return new ConsoleCharacter(' ', ConsoleColor.Black);
             }
 
             if (level.GetEntity<Monster>(location) != null)

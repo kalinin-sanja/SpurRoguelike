@@ -140,10 +140,10 @@ namespace SpurRoguelike
                     MaxWidth = 50,
                     MinHeight = 35,
                     MaxHeight = 45,
-                    MinVisibilityWidth = 20,
+                    MinVisibilityWidth = 22,
                     MaxVisibilityWidth = 30,
-                    MaxVisibilityHeight = 20,
-                    MinVisibilityHeight = 12
+                    MaxVisibilityHeight = 16,
+                    MinVisibilityHeight = 10
                 },
                 Monsters = new LevelGenerationSettings.MonsterOptions
                 {
