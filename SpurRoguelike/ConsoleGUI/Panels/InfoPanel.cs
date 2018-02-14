@@ -29,6 +29,15 @@ namespace SpurRoguelike.ConsoleGUI.Panels
                 return;
 
             var lineIndex = 0;
+            
+            var playerLocation = level.Player?.Location;
+            if (playerLocation.HasValue)
+            {
+                var offset = (location - playerLocation).Value.Abs();
+                if (offset.XOffset > level.Field.VisibilityWidth || offset.YOffset > level.Field.VisibilityHeight)
+                    return;
+            }
+
             switch (level.Field[location])
             {
                 case CellType.Wall:
