@@ -28,10 +28,15 @@ namespace SpurRoguelike.Core.Views
             }
         }
 
+
         public int Width => field?.Width ?? 0;
 
         public int Height => field?.Height ?? 0;
         
+        public int VisibilityHeight => field?.VisibilityHeight ?? 0;
+
+        public int VisibilityWidth => field?.VisibilityWidth ?? 0;
+
         public bool Contains(Location location)
         {
             return field?.Contains(location) ?? false;
